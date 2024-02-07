@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-
 	logger := rapid.NewModule(common.RapidSettings{
 		SyncMode:       common.VeritasDevelopment,
 		LogLevel:       common.LogLevelFull,
@@ -21,5 +20,4 @@ func main() {
 	logger.Warn("warn test")
 	logger.Error("error test")
 	logger.Fatal("fatal test")
-
 }
