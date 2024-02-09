@@ -6,6 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/sentry-solutions/sentry-rapid-module/common"
+	"github.com/sentry-solutions/sentry-rapid-module/interfaces"
 )
 
 type RapidModule struct {
@@ -13,6 +14,9 @@ type RapidModule struct {
 	LogColors   map[common.LoggerLogType]color.Color
 	ExtraColors map[string]color.Color
 }
+
+// Ensure the service satisfies the interface
+var _ interfaces.IRapidModule = (*RapidModule)(nil)
 
 func NewModule(settings common.RapidModuleSettings) *RapidModule {
 
