@@ -8,13 +8,13 @@ import (
 	"github.com/sentry-solutions/sentry-rapid-module/common"
 )
 
-type Rapid struct {
-	Settings    common.RapidSettings
+type RapidModule struct {
+	Settings    common.RapidModuleSettings
 	LogColors   map[common.LoggerLogType]color.Color
 	ExtraColors map[string]color.Color
 }
 
-func NewModule(settings common.RapidSettings) *Rapid {
+func NewModule(settings common.RapidModuleSettings) *RapidModule {
 
 	logColors := map[common.LoggerLogType]color.Color{
 		common.LogTypeOk:    *color.New(color.FgHiGreen),
@@ -28,16 +28,16 @@ func NewModule(settings common.RapidSettings) *Rapid {
 		"timestamp": *color.New(color.FgYellow),
 	}
 
-	return &Rapid{
+	return &RapidModule{
 		Settings:    settings,
 		LogColors:   logColors,
 		ExtraColors: extraColors,
 	}
 }
 
-func (rapid *Rapid) Log(logType common.LoggerLogType, message string) {
+func (module *RapidModule) Log(logType common.LoggerLogType, message string) {
 
-	switch rapid.Settings.LogLevel {
+	switch module.Settings.LogLevel {
 	case common.LogLevelSilent:
 		return
 	case common.LogLevelOk:
@@ -63,27 +63,27 @@ func (rapid *Rapid) Log(logType common.LoggerLogType, message string) {
 	}
 
 	t := time.Now().Format("2006-01-02 15:04:05")
-	logTypeColor := rapid.LogColors[logType]
-	timestampColor := rapid.ExtraColors["timestamp"]
+	logTypeColor := module.LogColors[logType]
+	timestampColor := module.ExtraColors["timestamp"]
 	fmt.Printf("%s %s %s\n", timestampColor.Sprint(t), logTypeColor.Sprint(logType), message)
 }
 
-func (rapid *Rapid) Ok(message string) {
-	rapid.Log(common.LogTypeOk, message)
+func (module *RapidModule) Ok(message string) {
+	module.Log(common.LogTypeOk, message)
 }
 
-func (rapid *Rapid) Info(message string) {
-	rapid.Log(common.LogTypeInfo, message)
+func (module *RapidModule) Info(message string) {
+	module.Log(common.LogTypeInfo, message)
 }
 
-func (rapid *Rapid) Warn(message string) {
-	rapid.Log(common.LogTypeWarn, message)
+func (module *RapidModule) Warn(message string) {
+	module.Log(common.LogTypeWarn, message)
 }
 
-func (rapid *Rapid) Error(message string) {
-	rapid.Log(common.LogTypeError, message)
+func (module *RapidModule) Error(message string) {
+	module.Log(common.LogTypeError, message)
 }
 
-func (rapid *Rapid) Fatal(message string) {
-	rapid.Log(common.LogTypeFatal, message)
+func (module *RapidModule) Fatal(message string) {
+	module.Log(common.LogTypeFatal, message)
 }

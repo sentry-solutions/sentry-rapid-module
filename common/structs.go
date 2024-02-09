@@ -1,6 +1,6 @@
 package common
 
-type RapidSettings struct {
+type RapidModuleSettings struct {
 	SyncMode       LoggerVeritasSyncMode
 	LogLevel       LoggerLogLevel
 	ContextFilter  LoggerContextFilter

@@ -5,6 +5,7 @@ Real-time Activity and Performance Information Dispatch Module (R.A.P.I.D. Modul
 - [ ] implement veritas sync module
 - [ ] implement events
 - [ ] advanced logging logics
+- [ ] separate sub-modules for veritas, logger etc
 
 ## Usage example
 
@@ -15,7 +16,7 @@ import (
 )
 
 func main() {
-	logger := rapid.NewModule(common.RapidSettings{
+	logger := rapid.NewModule(common.RapidModuleSettings{
 		SyncMode:       common.VeritasDevelopment,
 		LogLevel:       common.LogLevelFull,
 		ContextFilter:  common.LoggerContextFilterNone,
