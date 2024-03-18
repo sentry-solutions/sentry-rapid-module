@@ -1,6 +1,7 @@
 package rapid
 
 import (
+	"os"
 	"fmt"
 	"time"
 
@@ -90,4 +91,5 @@ func (module *RapidModule) Error(message string) {
 
 func (module *RapidModule) Fatal(message string) {
 	module.Log(common.LogTypeFatal, message)
+	os.Exit(1)
 }
